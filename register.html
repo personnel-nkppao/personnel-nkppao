@@ -64,9 +64,9 @@
                   <label for="email">อีเมล</label>
                   <input type="email" id="email" name="email" placeholder="example@email.com" required>
                 </div>
-                <input type="text" id="userProfile" name="userProfile" value=<?= liff.getProfile().profile.userId?> readonly>
-                <input type="text" id="displayName" name="displayName" value=<?= liff.getProfile().profile.displayName?> readonly>
-                <input type="text" id="pictureUrl" name="pictureUrl" value=<?= liff.getProfile().profile.pictureUrl?> readonly>
+                <input type="text" id="userProfile" name="userProfile" readonly>
+                <input type="text" id="displayName" name="displayName" readonly>
+                <input type="text" id="pictureUrl" name="pictureUrl" readonly>
                 <div class="field padding-bottom--24">
                   <input type="submit" name="submit" value="บันทึกข้อมูล">
                 </div>
@@ -90,8 +90,11 @@
     function runApp() {
         liff.getProfile().then(profile => {
             let userId = profile.userId;
+            document.getElementById('userProfile').value= profile.userId ; 
             let displayName = profile.displayName;
+            document.getElementById('displayName').value= profile.displayName ; 
             let pictureUrl = profile.pictureUrl;
+            document.getElementById('pictureUrl').value= profile.pictureUrl ; 
             let url = "<< URL >>?userId=" + userId + "&displayName=" + displayName + "&pictureUrl=" + pictureUrl;
             document.getElementById("formframe").src = url;
         }).catch(err => console.error(err));
@@ -106,6 +109,7 @@
     }, err => console.error(err.code, error.message));
 
 </script>
+<!--  
   <script>
   liff.init({ liffId: "2005836732-6yWAABXZ" }, () => {
     if (liff.isLoggedIn()) {
@@ -123,6 +127,7 @@
     }
   }, err => console.error(err.code, error.message));
 </script>
+  -->
   <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyY5LS7wJkmMH1FwYMyEMVoJdH02weZqzIhzRIt_Utt_K9fw580vXkzT-RDiC0iXBAQWw/exec' 
     const form = document.forms['myForm']
