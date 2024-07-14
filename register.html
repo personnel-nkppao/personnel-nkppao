@@ -64,9 +64,9 @@
                   <label for="email">อีเมล</label>
                   <input type="email" id="email" name="email" placeholder="example@email.com" required>
                 </div>
-                <input type="text" id="userProfile" name="userProfile" readonly>
-                <input type="text" id="displayName" name="displayName" readonly>
-                <input type="text" id="pictureUrl" name="pictureUrl" readonly>
+                <input type="hidden" id="userProfile" name="userProfile" readonly>
+                <input type="hidden" id="displayName" name="displayName" readonly>
+                <input type="hidden" id="pictureUrl" name="pictureUrl" readonly>
                 <div class="field padding-bottom--24">
                   <input type="submit" name="submit" value="บันทึกข้อมูล">
                 </div>
@@ -144,7 +144,7 @@
 }))
         .catch(error => console.error('Error!', error.message))
         .catch.contact-form.reset();
-        liff.closeWindow();
+        /*liff.closeWindow();*/
     })
   </script>
 
