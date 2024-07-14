@@ -51,20 +51,23 @@
               <form id="stripe-login" method="post" name="myForm">
 
                 <div class="field padding-bottom--24">
-                  <label for="name">ชื่อ สกุล</label>
-                  <input type="name" name="name" placeholder="ชื่อ สกุล" required>
+                  <label for="name">ชื่อ - สกุล</label>
+                  <input type="name" name="name" placeholder="ชื่อ - สกุล" required>
                 </div>
 
                 <div class="field padding-bottom--24">
-                    <label for="line">ไลน์ไอดี</label>
-                    <input type="text" id="line" name="line" placeholder="line id" required>
+                    <label for="line">หมายเลขโทรศัพท์</label>
+                    <input type="text" id="tel" name="line" placeholder="หมายเลขโทรศัพท์" required>
                   </div>
 
                 <div class="field padding-bottom--24">
                   <label for="email">อีเมล</label>
                   <input type="email" id="email" name="email" placeholder="example@email.com" required>
                 </div>
-                
+                <input type="hidden" id="userProfile" name="userProfile" value=userProfile>
+                <input type="hidden" id="displayName" name="displayName" value=displayName>
+                <input type="hidden" id="statusMessage" name="statusMessage" value=statusMessage>
+                <input type="hidden" id="pictureUrl" name="pictureUrl" value=pictureUrl>
                 <div class="field padding-bottom--24">
                   <input type="submit" name="submit" value="บันทึกข้อมูล">
                 </div>
@@ -83,6 +86,23 @@
     </div>
   </div>
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script>
+  liff.init({ liffId: "2005836732-6yWAABXZ" }, () => {
+    if (liff.isLoggedIn()) {
+      liff.getProfile().then(profile => {
+        const userProfile = profile.userId;
+        const displayName = profile.displayName;
+        const statusMessage = profile.statusMessage;
+        const pictureUrl = profile.pictureUrl;
+        const email = liff.getDecodedIDToken().email;
+}).catch(
+  err => console.error(err)
+);
+    } else {
+      liff.login();
+    }
+  }, err => console.error(err.code, error.message));
+</script>
   <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyAEzx2CwqYWh9nN6sHg5gVU1EHp6vjJeohRGLuciDzC77C4QRYTKrd5ClmeWm4EShY0g/exec' 
     const form = document.forms['myForm']
