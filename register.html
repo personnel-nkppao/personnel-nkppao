@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>ลงทะเบียน</title>
+  <title>ลงทะเบียน | กองการเจ้าหน้าที่ องค์การบริหารส่วนจังหวัดนครปฐม</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -95,11 +95,8 @@
             document.getElementById('displayName').value= profile.displayName ; 
             let pictureUrl = profile.pictureUrl;
             document.getElementById('pictureUrl').value= profile.pictureUrl ; 
-            let url = "<< URL >>?userId=" + userId + "&displayName=" + displayName + "&pictureUrl=" + pictureUrl;
-            document.getElementById("formframe").src = url;
         }).catch(err => console.error(err));
     }
-
     liff.init({ liffId: "2005836732-6yWAABXZ" }, () => {
         if (liff.isLoggedIn()) {
             runApp();
@@ -107,27 +104,8 @@
             liff.login();
         }
     }, err => console.error(err.code, error.message));
+</script>
 
-</script>
-<!--  
-  <script>
-  liff.init({ liffId: "2005836732-6yWAABXZ" }, () => {
-    if (liff.isLoggedIn()) {
-      liff.getProfile().then(profile => {
-        const userProfile = profile.userId;
-        const displayName = profile.displayName;
-        const statusMessage = profile.statusMessage;
-        const pictureUrl = profile.pictureUrl;
-        const email = liff.getDecodedIDToken().email;
-}).catch(
-  err => console.error(err)
-);
-    } else {
-      liff.login();
-    }
-  }, err => console.error(err.code, error.message));
-</script>
-  -->
   <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyY5LS7wJkmMH1FwYMyEMVoJdH02weZqzIhzRIt_Utt_K9fw580vXkzT-RDiC0iXBAQWw/exec' 
     const form = document.forms['myForm']
