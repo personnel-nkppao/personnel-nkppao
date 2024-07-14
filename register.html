@@ -64,10 +64,10 @@
                   <label for="email">อีเมล</label>
                   <input type="email" id="email" name="email" placeholder="example@email.com" required>
                 </div>
-                <input type="hidden" id="userProfile" name="userProfile" value=userProfile>
-                <input type="hidden" id="displayName" name="displayName" value=displayName>
-                <input type="hidden" id="statusMessage" name="statusMessage" value=statusMessage>
-                <input type="hidden" id="pictureUrl" name="pictureUrl" value=pictureUrl>
+                <input type="text" id="userProfile" name="userProfile" value=userProfile>
+                <input type="text" id="displayName" name="displayName" value=displayName>
+                <input type="text" id="statusMessage" name="statusMessage" value=statusMessage>
+                <input type="text" id="pictureUrl" name="pictureUrl" value=pictureUrl>
                 <div class="field padding-bottom--24">
                   <input type="submit" name="submit" value="บันทึกข้อมูล">
                 </div>
@@ -85,7 +85,28 @@
       </div>
     </div>
   </div>
-  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.15.0/sdk.js"></script>
+  <script>
+    
+    function runApp() {
+        liff.getProfile().then(profile => {
+            let userId = profile.userId;
+            let displayName = profile.displayName;
+            let pictureUrl = profile.pictureUrl;
+            let url = "<< URL >>?userId=" + userId + "&displayName=" + displayName + "&pictureUrl=" + pictureUrl;
+            document.getElementById("formframe").src = url;
+        }).catch(err => console.error(err));
+    }
+
+    liff.init({ liffId: "2005836732-6yWAABXZ" }, () => {
+        if (liff.isLoggedIn()) {
+            runApp();
+        } else {
+            liff.login();
+        }
+    }, err => console.error(err.code, error.message));
+
+</script>
   <script>
   liff.init({ liffId: "2005836732-6yWAABXZ" }, () => {
     if (liff.isLoggedIn()) {
